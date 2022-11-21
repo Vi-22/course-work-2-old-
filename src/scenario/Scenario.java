@@ -15,9 +15,8 @@ import java.util.Map;
 
 public class Scenario{
     public List<Paragraph> paragraphList;
-    public Map<String,Paragraph> actionToParagrah;
-    private Scenario() throws IOException {
-       ConfigurationManager.getScenario();
+    private Scenario() {
+        ConfigurationManager.getScenario();
     }
     public List<String> availableActions (Paragraph paragraph) {
         return paragraph.getActions();

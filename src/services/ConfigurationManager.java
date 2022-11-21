@@ -15,6 +15,7 @@ public class ConfigurationManager {
         try {
             FileInputStream fileInputStream = new FileInputStream(propertiesFile);
             properties.load(fileInputStream);
+            fileInputStream.close();
             return properties.getProperty(propertyKey);
         } catch (IOException e) {
             throw new RuntimeException(e);
