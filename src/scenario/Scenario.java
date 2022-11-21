@@ -14,18 +14,17 @@ import java.util.Map;
 
 
 public class Scenario{
-    List<Paragraph> paragraphList;
+    public List<Paragraph> paragraphList;
+    public Map<String,Paragraph> actionToParagrah;
     private Scenario() throws IOException {
        ConfigurationManager.getScenario();
     }
     public List<String> availableActions (Paragraph paragraph) {
         return paragraph.getActions();
     }
-    public String nextParagraph (Paragraph paragraph, int action) {
-        paragraphList.indexOf(paragraph.getNext().get(action));
-
-            };
-    }
-    public Paragraph
+   // public Paragraph nextParagraph (Paragraph paragraph, int action) {
+        //paragraphList.indexOf(paragraph.getNext().get(action).equals());
+     //   return paragraph;
+    //}
 
 }

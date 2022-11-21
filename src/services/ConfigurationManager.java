@@ -5,15 +5,29 @@ import com.fasterxml.jackson.dataformat.yaml.YAMLMapper;
 import scenario.Paragraph;
 
 import java.io.*;
-import java.util.Arrays;
-import java.util.List;
+import java.util.*;
 
 public class ConfigurationManager {
-
-    public static void getScenario() throws IOException {
-    File file = new File("C:\\Users\\v.sukhenko\\IdeaProjects" +
-            "\\course-work-2\\src\\resources\\scenario.yml");
-    ObjectMapper objectMapper = new YAMLMapper();
-    List<Paragraph> paragraphList = Arrays.asList(objectMapper.readValue(file, Paragraph[].class));
+    public final static String propertiesPathName = "src/resources/application.properties";
+    public static String getProperty(String propertyKey) {
+        File propertiesFile = new File(propertiesPathName);
+        Properties properties = new Properties();
+        try {
+            FileInputStream fileInputStream = new FileInputStream(propertiesFile);
+            properties.load(fileInputStream);
+            return properties.getProperty(propertyKey);
+        } catch (IOException e) {
+            throw new RuntimeException(e);
+        }
+    }
+    public static List<Paragraph> getScenario () {
+        try {
+            File configFile = new File(getProperty("config.url"));
+            ObjectMapper objectMapper = new YAMLMapper();
+            List<Paragraph> paragraphList = Arrays.asList(objectMapper.readValue(configFile, Paragraph[].class));
+            return paragraphList;
+        } catch (IOException e) {
+            throw new RuntimeException(e);
+        }
     }
 }
