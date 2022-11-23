@@ -1,17 +1,17 @@
 package services;
 
 import scenario.Paragraph;
+import scenario.Scenario;
 
 import java.io.*;
 
 public class SaveManager {
-    private static final FileManager <String> fileManager = new FileManager<>(ConfigurationManager.getProperty("saver.url"));
+    private static final FileManager <Paragraph> fileManager = new FileManager<>(ConfigurationManager.getProperty("saver.url"));
 
     public static void saveGame(Paragraph paragraph) {
-        String currentParagraph = paragraph.getTitle();
-        fileManager.writeToFile(currentParagraph);
+        fileManager.writeToFile(paragraph);
     }
-    public static String restoreGame() {
+    public static Paragraph restoreGame() {
         return fileManager.readFromFile();
     }
 }

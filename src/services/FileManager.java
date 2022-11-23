@@ -3,13 +3,13 @@ package services;
 import java.io.*;
 
 public class FileManager<T> {
-    public File file;
+    public String file;
     public FileManager(String fileName) {
-        File file = new File(String.valueOf(fileName));
+        setFile(fileName);
     }
     public void writeToFile(T object) {
         try {
-            FileOutputStream fileOutputStream = new FileOutputStream(this.file);
+            FileOutputStream fileOutputStream = new FileOutputStream(getFile());
             ObjectOutputStream objectOutputStream = new ObjectOutputStream(fileOutputStream);
             objectOutputStream.writeObject(object);
             objectOutputStream.close();
@@ -21,7 +21,7 @@ public class FileManager<T> {
     }
     public T readFromFile () {
         try {
-            FileInputStream fileInputStream = new FileInputStream(this.file);
+            FileInputStream fileInputStream = new FileInputStream(getFile());
             ObjectInputStream objectInputStream = new ObjectInputStream(fileInputStream);
         return (T) objectInputStream.readObject();
         }
@@ -30,5 +30,11 @@ public class FileManager<T> {
         }
     }
 
+    public String getFile() {
+        return file;
+    }
 
+    public void setFile(String file) {
+        this.file = file;
+    }
 }

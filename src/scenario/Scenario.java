@@ -1,29 +1,52 @@
 package scenario;
 
-import com.fasterxml.jackson.databind.DeserializationFeature;
-import com.fasterxml.jackson.databind.ObjectMapper;
-import com.fasterxml.jackson.dataformat.yaml.JacksonYAMLParseException;
-import com.fasterxml.jackson.dataformat.yaml.YAMLMapper;
 import services.ConfigurationManager;
+import services.SaveManager;
 
-import java.io.IOException;
-import java.io.ObjectInputFilter;
-import java.lang.module.Configuration;
 import java.util.List;
-import java.util.Map;
 
 
 public class Scenario{
-    public List<Paragraph> paragraphList;
-    private Scenario() {
-        ConfigurationManager.getScenario();
+    private static List<Paragraph> paragraphList;
+    private static Paragraph currentParagraph=null;
+    static  {
+        setParagraphList();
+        setCurrentParagraph(null);
     }
-    public List<String> availableActions (Paragraph paragraph) {
-        return paragraph.getActions();
-    }
-   // public Paragraph nextParagraph (Paragraph paragraph, int action) {
-        //paragraphList.indexOf(paragraph.getNext().get(action).equals());
-     //   return paragraph;
-    //}
 
+    public static Paragraph startScenario() {
+        setCurrentParagraph(paragraphList.get(0));
+        return currentParagraph;
+    }
+
+    public static Paragraph restoreScenario() {
+        setCurrentParagraph(SaveManager.restoreGame());
+        return currentParagraph;
+    }
+    public static Paragraph nextParagraph(int number) {
+        String paragraphName = Scenario.getCurrentParagraph().getNext().get(number);
+        Paragraph next = null;
+        for (Paragraph paragraph: paragraphList) {
+            if (paragraph.getTitle().equals(paragraphName))
+                next = paragraph;
+        }
+        return next;
+    }
+
+    public static List<Paragraph> getParagraphList() {
+        return paragraphList;
+    }
+
+    private static void setParagraphList() {
+        Scenario.paragraphList = ConfigurationManager.getScenarioConfiguration();
+    }
+
+    public static Paragraph getCurrentParagraph() {
+        return currentParagraph;
+    }
+
+    public static void setCurrentParagraph(Paragraph currentParagraph) {
+        Scenario.currentParagraph = currentParagraph;
+    }
 }
+

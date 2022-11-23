@@ -21,7 +21,7 @@ public class ConfigurationManager {
             throw new RuntimeException(e);
         }
     }
-    public static List<Paragraph> getScenario () {
+    public static List<Paragraph> getScenarioConfiguration() {
         try {
             File configFile = new File(getProperty("config.url"));
             ObjectMapper objectMapper = new YAMLMapper();
