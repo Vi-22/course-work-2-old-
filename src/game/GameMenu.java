@@ -16,12 +16,12 @@ public class GameMenu implements CommandManager {
         try {
             System.out.println("1. " + Scenario.getCurrentParagraph().getActions().get(0));
             System.out.println("2. " + Scenario.getCurrentParagraph().getActions().get(1));
-            System.out.println("3. Сохранить и вернуться в главное меню" );
+            System.out.println("3. Сохранить и вернуться в главное меню");
         }
         catch (NullPointerException e) {
-            Game.mainMenu();
+            System.out.println("GAME OVER");
+            Game.exitGame();
         }
-
         chooseScanner();
     }
     @Override
