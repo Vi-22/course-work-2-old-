@@ -30,26 +30,27 @@ public class Menu {
             bottoms.forEach((integer, bottom) -> System.out.println(integer + ". "
             +bottom.getName()));
             System.out.println("Пожалуйста, введите цифру нужного пункта меню");
-            this.activateCommand(scanAnswer());
+            scanAnswer();
         }
         catch (NullPointerException e){
             System.out.println("Игра завершена");
             scanner.close();
         }
     }
-    public int scanAnswer() {
-        int point;
+    public void scanAnswer() {
+       int point = 0;
         try {
-            point =  scanner.nextInt();
+            point = scanner.nextInt();
         }
         catch (InputMismatchException e) {
             point=0;
         }
         if (point > this.bottoms.size()||point<=0) exceptionHandler();
-        return point;
+        else this.activateCommand(point);
     }
     public void exceptionHandler() {
         System.out.println("Пожалуйста, выберите нужный пункт меню.");
+        scanner.nextLine();
         scanAnswer();
     }
     public void activateCommand(int command) {
