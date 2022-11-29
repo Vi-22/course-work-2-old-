@@ -1,4 +1,4 @@
-package services;
+package ru.viktoria.cw.cw2.services;
 
 import java.io.*;
 

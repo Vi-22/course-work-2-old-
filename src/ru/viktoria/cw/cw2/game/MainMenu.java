@@ -1,6 +1,6 @@
-package game;
+package ru.viktoria.cw.cw2.game;
 
-import command.*;
+import ru.viktoria.cw.cw2.command.*;
 
 import java.util.TreeMap;
 

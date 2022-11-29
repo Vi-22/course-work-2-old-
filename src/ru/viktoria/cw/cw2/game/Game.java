@@ -1,8 +1,8 @@
-package game;
+package ru.viktoria.cw.cw2.game;
 
-import scenario.Paragraph;
-import scenario.Scenario;
-import services.SaveManager;
+import ru.viktoria.cw.cw2.scenario.Paragraph;
+import ru.viktoria.cw.cw2.scenario.Scenario;
+import ru.viktoria.cw.cw2.services.SaveManager;
 
 public class Game {
     private Paragraph currentParagraph;

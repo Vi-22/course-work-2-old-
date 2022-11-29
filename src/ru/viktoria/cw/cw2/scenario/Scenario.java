@@ -1,6 +1,6 @@
-package scenario;
+package ru.viktoria.cw.cw2.scenario;
 
-import services.ConfigurationManager;
+import ru.viktoria.cw.cw2.services.ConfigurationManager;
 
 import java.util.List;
 

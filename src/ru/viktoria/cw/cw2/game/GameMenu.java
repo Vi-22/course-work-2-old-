@@ -1,8 +1,8 @@
-package game;
+package ru.viktoria.cw.cw2.game;
 
-import command.FirstActionCommand;
-import command.MainMenuCommand;
-import command.SecondActionCommand;
+import ru.viktoria.cw.cw2.command.FirstActionCommand;
+import ru.viktoria.cw.cw2.command.MainMenuCommand;
+import ru.viktoria.cw.cw2.command.SecondActionCommand;
 import java.util.TreeMap;
 
 public class GameMenu extends Menu {

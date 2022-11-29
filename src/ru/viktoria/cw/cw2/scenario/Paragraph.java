@@ -1,4 +1,4 @@
-package scenario;
+package ru.viktoria.cw.cw2.scenario;
 
 import java.io.Serializable;
 import java.util.List;
@@ -9,9 +9,7 @@ public class Paragraph implements Serializable {
     private List<String> actions;
     private List<String> next;
 
-    Paragraph() {
-    }
-
+    private Paragraph(){}
     private Paragraph(String title, String text) {
         setTitle(title);
         setText(text);

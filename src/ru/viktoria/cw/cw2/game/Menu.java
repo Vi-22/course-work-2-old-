@@ -1,6 +1,6 @@
-package game;
+package ru.viktoria.cw.cw2.game;
 
-import command.Command;
+import ru.viktoria.cw.cw2.command.Command;
 
 import java.util.InputMismatchException;
 import java.util.Scanner;

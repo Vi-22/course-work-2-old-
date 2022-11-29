@@ -1,6 +1,6 @@
-package command;
+package ru.viktoria.cw.cw2.command;
 
-import game.Game;
+import ru.viktoria.cw.cw2.game.Game;
 
 public class ExitCommand implements Command{
     public Game game;

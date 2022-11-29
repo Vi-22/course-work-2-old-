@@ -1,14 +1,14 @@
-package services;
+package ru.viktoria.cw.cw2.services;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.dataformat.yaml.YAMLMapper;
-import scenario.Paragraph;
+import ru.viktoria.cw.cw2.scenario.Paragraph;
 
 import java.io.*;
 import java.util.*;
 
 public class ConfigurationManager {
-    public final static String propertiesPathName = "src/resources/application.properties";
+    private final static String propertiesPathName = "src/ru/viktoria/cw/cw2/resources/application.properties";
     public static String getProperty(String propertyKey) {
         File propertiesFile = new File(propertiesPathName);
         Properties properties = new Properties();

@@ -1,4 +1,4 @@
-package command;
+package ru.viktoria.cw.cw2.command;
 
 
 public interface Command {

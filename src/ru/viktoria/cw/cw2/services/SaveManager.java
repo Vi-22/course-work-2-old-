@@ -1,6 +1,6 @@
-package services;
+package ru.viktoria.cw.cw2.services;
 
-import scenario.Paragraph;
+import ru.viktoria.cw.cw2.scenario.Paragraph;
 
 public class SaveManager {
     private static final FileManager <Paragraph> fileManager =
