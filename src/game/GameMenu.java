@@ -1,36 +1,22 @@
 package game;
 
-import scenario.Paragraph;
-import scenario.Scenario;
-import services.CommandManager;
+import command.FirstActionCommand;
+import command.MainMenuCommand;
+import command.SecondActionCommand;
+import java.util.TreeMap;
 
-public class GameMenu implements CommandManager {
-    public GameMenu(Paragraph scenario) {
+public class GameMenu extends Menu {
+
+    public GameMenu() {
+        super(new TreeMap<>());
     }
-    @Override
-    public void show() {
-        System.out.println(Scenario.getCurrentParagraph().getTitle());
-        System.out.println();
-        System.out.println(Scenario.getCurrentParagraph().getText());
-        System.out.println();
-        try {
-            System.out.println("1. " + Scenario.getCurrentParagraph().getActions().get(0));
-            System.out.println("2. " + Scenario.getCurrentParagraph().getActions().get(1));
-            System.out.println("3. Сохранить и вернуться в главное меню");
-        }
-        catch (NullPointerException e) {
-            System.out.println("GAME OVER");
-            Game.exitGame();
-        }
-        chooseScanner();
-    }
-    @Override
-    public void chooseScanner() {
-        int point=readPoint();
-        switch (point) {
-            case 1,2 -> Game.nextParagraph(point-1);
-            case 3 -> Game.save();
-            default -> exeptionHandler();
-        }
+    public void setGameMenu(Game game){
+        this.setHead(game.getCurrentParagraph().getText());
+        FirstActionCommand firstAction = new FirstActionCommand(game);
+        SecondActionCommand secondAction = new SecondActionCommand(game);
+        MainMenuCommand mainMenu = new MainMenuCommand(game);
+        this.getBottoms().put(1, firstAction);
+        this.getBottoms().put(2, secondAction);
+        this.getBottoms().put(3, mainMenu);
     }
 }

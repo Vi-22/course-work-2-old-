@@ -1,24 +1,32 @@
 package game;
 
-import services.CommandManager;
+import command.*;
 
-public class MainMenu implements CommandManager {
-    @Override
-    public void show() {
-        System.out.println("Главное меню:");
-        System.out.println("1. Начать игру");
-        System.out.println("2. Загрузить игру");
-        System.out.println("3. Выйти");
-        System.out.println("Пожалуйста, введите цифру нужного пункта меню");
-        chooseScanner();
+import java.util.TreeMap;
+
+public class MainMenu extends Menu {
+    public MainMenu() {
+        super(new TreeMap<>());
     }
-    @Override
-    public void chooseScanner() {
-        switch(readPoint()) {
-        case 1 -> Game.newGame();
-        case 2 -> Game.previousGame();
-        case 3 -> Game.exitGame();
-        default -> exeptionHandler();
-        }
+
+    public void setStandartMainMenu(Game game) {
+        setHead("Главное меню: ");
+        CreateNewCommand createNewGame = new CreateNewCommand(game);
+        RestoreCommand restoreGame = new RestoreCommand(game);
+        ExitCommand exitGame = new ExitCommand(game);
+        getBottoms().put(1, createNewGame);
+        getBottoms().put(2, restoreGame);
+        getBottoms().put(3, exitGame);
+    }
+    public void setExtendMainMenu(Game game) {
+        setHead("Главное меню: ");
+        CreateNewCommand createNewGame = new CreateNewCommand(game);
+        RestoreCommand restoreGame = new RestoreCommand(game);
+        SaveCommand saveGame = new SaveCommand(game);
+        ExitCommand exitGame = new ExitCommand(game);
+        this.getBottoms().put(1, createNewGame);
+        this.getBottoms().put(2, restoreGame);
+        this.getBottoms().put(3, saveGame);
+        this.getBottoms().put(4, exitGame);
     }
 }

@@ -1,38 +1,62 @@
 package game;
 
+import scenario.Paragraph;
 import scenario.Scenario;
 import services.SaveManager;
 
 public class Game {
+    private Paragraph currentParagraph;
+
+    public Game() {}
+
     public static void run(){
-        mainMenu();
-    }
-    public static void mainMenu() {
+        Game game = new Game();
         MainMenu mainMenu = new MainMenu();
+        mainMenu.setStandartMainMenu(game);
+        mainMenu.show();
+
+    }
+    public void mainMenu() {
+        MainMenu mainMenu = new MainMenu();
+        mainMenu.setExtendMainMenu(this);
         mainMenu.show();
     }
-    public static void gameMenu() {
-        GameMenu gameMenu = new GameMenu(Scenario.getCurrentParagraph());
-        gameMenu.show();
+    public void gameMenu() {
+    GameMenu gameMenu = new GameMenu();
+    gameMenu.setGameMenu(this);
+    gameMenu.show();
     }
-    public static void newGame(){
-        Scenario.startScenario();
+    public void createNew(){
+        this.currentParagraph = Scenario.startScenario();
         gameMenu();
     }
-    public static void previousGame(){
-        Scenario.restoreScenario();
+    public void restore(){
+        this.currentParagraph = SaveManager.restoreGame();
         gameMenu();
     }
-    public static void exitGame(){
+    public void exit(){
         System.exit(0);
     }
-    public static void save(){
-        SaveManager.saveGame(Scenario.getCurrentParagraph());
-        Game.mainMenu();
+    public void save(){
+        SaveManager.saveGame(this.currentParagraph);
+        MainMenu mainMenu = new MainMenu();
+        mainMenu.setStandartMainMenu(this);
+        mainMenu.show();
     }
-    public static void nextParagraph(int action){
-    Scenario.setCurrentParagraph(Scenario.nextParagraph(action));;
-    GameMenu gameMenu = new GameMenu(Scenario.getCurrentParagraph());
-    gameMenu.show();
+    public void firstAction() {
+        this.currentParagraph = (Scenario.nextParagraph(this.currentParagraph, 0));
+        gameMenu();
+    }
+    public void secondAction() {
+        this.currentParagraph = (Scenario.nextParagraph(this.currentParagraph,1));
+        gameMenu();
+    }
+
+    public Paragraph getCurrentParagraph() {
+        return currentParagraph;
+    }
+
+    public void setCurrentParagraph(Paragraph currentParagraph) {
+        this.currentParagraph = currentParagraph;
     }
 }
