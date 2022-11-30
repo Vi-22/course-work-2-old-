@@ -9,7 +9,7 @@ import java.util.TreeMap;
 public class Menu {
     private String head;
     private TreeMap<Integer, Command> bottoms;
-    private Scanner scanner = new Scanner(System.in);
+    private static final Scanner scanner = new Scanner(System.in);
 
     public Menu () {}
     public Menu(TreeMap<Integer, Command> bottoms) {
@@ -24,19 +24,23 @@ public class Menu {
     }
 
 
-    public void show() {
+    public boolean show() {
         System.out.println(this.head);
+        Boolean isBottoms;
         try {
             bottoms.forEach((integer, bottom) -> System.out.println(integer + ". "
             +bottom.getName()));
             System.out.println("Пожалуйста, введите цифру нужного пункта меню");
             scanAnswer();
+            isBottoms=true;
         }
         catch (NullPointerException e){
             System.out.println();
-            System.out.println("Игра завершена!1");
-            scanner.close();
+            System.out.println("Игра завершена!");
+            System.out.println();
+            isBottoms=false;
         }
+        return isBottoms;
     }
     public void scanAnswer() {
        int point = 0;
@@ -74,5 +78,8 @@ public class Menu {
     public void setHead(String head) {
         if (head==null) throw new IllegalArgumentException();
         this.head = head;
+    }
+    public static void closeScanner () {
+        scanner.close();
     }
 }

@@ -12,7 +12,7 @@ public class MainMenuCommand implements Command{
 
     @Override
     public void execute() {
-        game.mainMenu();
+        game.extendMainMenu();
     }
 
     @Override

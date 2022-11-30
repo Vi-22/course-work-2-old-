@@ -11,20 +11,22 @@ public class Game {
 
     public static void run(){
         Game game = new Game();
-        MainMenu mainMenu = new MainMenu();
-        mainMenu.setStandartMainMenu(game);
-        mainMenu.show();
-
+        game.standartMainMenu();
     }
-    public void mainMenu() {
+    public void standartMainMenu() {
+        MainMenu mainMenu = new MainMenu();
+        mainMenu.setStandartMainMenu(this);
+        mainMenu.show();
+    }
+    public void extendMainMenu() {
         MainMenu mainMenu = new MainMenu();
         mainMenu.setExtendMainMenu(this);
         mainMenu.show();
     }
     public void gameMenu() {
-    GameMenu gameMenu = new GameMenu();
-    gameMenu.setGameMenu(this);
-    gameMenu.show();
+        GameMenu gameMenu = new GameMenu();
+        gameMenu.setGameMenu(this);
+        if (!gameMenu.show()) standartMainMenu();
     }
     public void createNew(){
         this.currentParagraph = Scenario.startScenario();
@@ -35,7 +37,9 @@ public class Game {
         gameMenu();
     }
     public void exit(){
-        System.exit(0);
+        MainMenu.closeScanner();
+        System.out.println("Вы вышли из игры!");
+        System.exit(200);
     }
     public void save(){
         SaveManager.saveGame(this.currentParagraph);
