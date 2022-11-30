@@ -36,6 +36,7 @@ public class Paragraph implements Serializable {
     }
 
     public void setTitle(String title) {
+        if (title==null) throw new IllegalArgumentException();
         this.title = title;
     }
 
@@ -44,6 +45,7 @@ public class Paragraph implements Serializable {
     }
 
     public void setText(String text) {
+        if (text==null) throw new IllegalArgumentException();
         this.text = text;
     }
 
@@ -64,9 +66,7 @@ public class Paragraph implements Serializable {
     }
     @Override
         public String toString () {
-            return "\nTitle: " + title + "\nText: " + text
-                    //+ "\nActions: " + actions.toString() + "\nNext: " + next.toString()
-        ;
+            return "\nTitle: " + title + "\nText: " + text;
         }
 }
 

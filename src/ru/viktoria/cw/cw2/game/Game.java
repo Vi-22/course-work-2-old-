@@ -57,6 +57,7 @@ public class Game {
     }
 
     public void setCurrentParagraph(Paragraph currentParagraph) {
+        if (currentParagraph==null) throw new IllegalArgumentException();
         this.currentParagraph = currentParagraph;
     }
 }

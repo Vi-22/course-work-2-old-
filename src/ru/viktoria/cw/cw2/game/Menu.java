@@ -33,7 +33,8 @@ public class Menu {
             scanAnswer();
         }
         catch (NullPointerException e){
-            System.out.println("Игра завершена");
+            System.out.println();
+            System.out.println("Игра завершена!1");
             scanner.close();
         }
     }
@@ -61,17 +62,17 @@ public class Menu {
         return bottoms;
     }
 
-    public void setBottoms(TreeMap<Integer, Command> commandMap) {
-        this.bottoms = commandMap;
+    public void setBottoms(TreeMap<Integer, Command> bottoms) {
+        if (bottoms==null) throw new IllegalArgumentException();
+        this.bottoms = bottoms;
     }
-
-
 
     public String getHead() {
         return head;
     }
 
     public void setHead(String head) {
+        if (head==null) throw new IllegalArgumentException();
         this.head = head;
     }
 }
